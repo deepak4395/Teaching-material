@@ -1,0 +1,28 @@
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(2, OUTPUT);
+  pinMode(13, INPUT);
+}
+int i = 0, k = 0;
+bool led=true;
+long timeT = millis();
+void loop() {
+  // put your main code here, to run repeatedly:
+  i = digitalRead(13);
+  Serial.println(i);
+  if(k!=i){
+    k=i;
+    digitalWrite(2,i);
+    led = !led;
+  }
+//  if (i == 1) {
+//    timeT = millis();
+//    Serial.println("Motion Detected. Alarm for 4 seconds");
+//    digitalWrite(2, HIGH);
+//    while ((millis() - timeT) < 4000);
+//  }
+//  else {
+//    digitalWrite(2, LOW);
+//  }
+}

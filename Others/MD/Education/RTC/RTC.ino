@@ -1,12 +1,6 @@
 #include <Wire.h>
-#include <RTClib.h>
-/*
-   RTC    ESP32
-   VCC    Vin
-   GND    GND
-   SCL    22
-   SDA    21
-*/
+#include "RTClib.h"
+
 RTC_DS1307 rtc;
 void setup() {
   Serial.begin(115200);
@@ -16,11 +10,11 @@ void setup() {
     while (1);
   } // end rtc.begin()
   // following line sets the RTC to the date & time this sketch was compiled
-   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   // This line sets the RTC with an explicit date & time, for example to set
   // January 21, 2014 at 3am you would call:
-  // rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0)); // year, month, day, hour, minute, seconds
-  pinMode(2, OUTPUT);
+  // rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
+
 }
 
 void loop() {
@@ -39,14 +33,7 @@ void loop() {
   //DDD - the abbreviated English day name ('Mon' to 'Sun')
 
   char buf1[] = "hh:mm";
-  String s = now.toString(buf1);
-  Serial.println(s);
-  if (s == "18:27") {
-    digitalWrite(2, HIGH);
-  }
-  else {
-    digitalWrite(2, LOW);
-  }
+  Serial.println(now.toString(buf1));
 
   char buf2[] = "YYMMDD-hh:mm:ss";
   Serial.println(now.toString(buf2));
@@ -55,7 +42,7 @@ void loop() {
   Serial.println(now.toString(buf3));
 
   char buf4[] = "MM-DD-YYYY";
-  //String s = now.toString(buf4);
+  String s = now.toString(buf4);
   Serial.println(s);
 
   delay(1000);

@@ -1,0 +1,27 @@
+// (Inline Comment)Arduino Integrated Development Enviornment
+
+/*
+   Group Comment
+   Lets take number 52
+   C, C++
+*/
+int checkNumber = 53 ;
+bool result = true ; // false
+int r;
+int Q;
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  Q = checkNumber / 2; // +,-, *,
+  r = checkNumber % 2;
+  Serial.println();
+  Serial.print("Q= ");
+  Serial.println(Q);
+  Serial.print("R= ");
+  Serial.println(r);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}
