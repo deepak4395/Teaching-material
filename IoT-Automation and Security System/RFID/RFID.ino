@@ -1,5 +1,6 @@
 /*
    Code reads the tag and prints its unique ID.
+   RFID Library Name: MFRC522 by GitHub Community, Availale in Library Manger (Ctrl+shift+I).
    RFID    ESP32
    SDA     5
    SCK     18

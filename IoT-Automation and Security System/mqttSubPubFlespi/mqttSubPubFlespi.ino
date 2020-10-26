@@ -1,13 +1,17 @@
-// Control inbuilt led from mqtt dash app and send/publish random to same app.
+/*
+ * Mqtt Library : PubSubClient by Nick O'Leary, Availale in Library Manger (Ctrl+shift+I)
+ * Mqtt Dash: https://play.google.com/store/apps/details?id=net.routix.mqttdash
+ * Update the code with your MQTT Broker details to avoid interfacing of other users to control your system.
+ * Set your own broker at flespi.io
+ * 
+ * This code controls inbuilt led from mqtt dash app and send/publish random to same app.
+ */
 #include <WiFi.h>
 #include <PubSubClient.h>
 // Wifi Credentials
 char ssid[] = "M 57"; //Put your wifi name.
 char password[] = "8376918157"; //Put your wifi password.
-// Gateway and IP must has same masking for first 3 places.
-IPAddress ip(192, 168, 0, 200);           //Set IP  //update
-IPAddress gateway(192, 168, 0, 1);        //Set Gateway // update according to your router
-IPAddress subnet(255, 255, 255, 0);       //Set Subnet
+
 // MQTT Broker Credentials flespi.io
 const char server[] = "mqtt.flespi.io";
 char mqttUserName[] = "hXMU1DZsH9kjIZQkUm69e36qVT3OtoUAbuj1V6hs5rBEffOXrLWvCTKoAD2URMkR";
@@ -16,7 +20,7 @@ const char clientID[] = "9899845428"; // change according to your no. must be un
 // Topics to subscibe and publish
 const char topicSub[] = "LED2";
 String topicPub = "RFID";
-
+//Messages to sent
 bool rfidFlag = true;
 
 WiFiClient client;
@@ -47,7 +51,6 @@ void setup() {
   //Wifi Setup
   WiFi.mode(WIFI_AP_STA);
   WiFi.begin(ssid, password);
-  //WiFi.config(ip, gateway, subnet); //update
   Serial.print("Connecting");
   int tries = 0;
   while (WiFi.status() != WL_CONNECTED) {

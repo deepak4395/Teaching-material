@@ -1,3 +1,6 @@
+/*
+ * Esp32 Servo: https://github.com/madhephaestus/ESP32Servo or available in the servo folder.
+ */
 #include <ESP32Servo.h>
 
 Servo myservo;  // create servo object to control a servo

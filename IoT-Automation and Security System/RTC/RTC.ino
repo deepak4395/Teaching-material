@@ -1,25 +1,22 @@
-#include <Wire.h>
-#include <RTClib.h>
 /*
+ * This code reads the time from RTC and creates buffer in preference of user. Buffer can be converted to string.
+   RTC Library : RTCLib by Adafruit, Availale in Library Manger (Ctrl+shift+I)
    RTC    ESP32
    VCC    Vin
    GND    GND
    SCL    22
    SDA    21
 */
+#include <Wire.h>
+#include <RTClib.h>
+
 RTC_DS1307 rtc;
 void setup() {
   Serial.begin(115200);
-
-  if (! rtc.begin()) {
+  if (! rtc.begin()) { // begin the rtc communication with controller.
     Serial.println("Couldn't find RTC");
     while (1);
-  } // end rtc.begin()
-  // following line sets the RTC to the date & time this sketch was compiled
-   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-  // This line sets the RTC with an explicit date & time, for example to set
-  // January 21, 2014 at 3am you would call:
-  // rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0)); // year, month, day, hour, minute, seconds
+  }
   pinMode(2, OUTPUT);
 }
 
@@ -55,7 +52,7 @@ void loop() {
   Serial.println(now.toString(buf3));
 
   char buf4[] = "MM-DD-YYYY";
-  //String s = now.toString(buf4);
+  s = now.toString(buf4);
   Serial.println(s);
 
   delay(1000);

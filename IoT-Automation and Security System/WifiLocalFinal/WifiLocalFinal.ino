@@ -1,3 +1,7 @@
+/*
+ * This code creates a local server to communicate with Esp32 from web browser or mobile application.
+ * For local control Arduino Controller : https://play.google.com/store/apps/details?id=com.CIStudio.ArduinoController
+ */
 #include <WiFi.h>
 
 // Your wifi SSID and Password
@@ -48,14 +52,14 @@ void setup()
 }
 void loop()
 {
-  String s = appHandler();
+  String s = appHandler(); // Reads the command from application.
   if (s != "") {
     Serial.println(s);
   }
   delay(10);
 }
 void appData(WiFiClient cl) {
-  //To read
+  //To write data to application use id and message associated to it.
   cl.println("<br/><a id=" + id1 + ">" + String(mesg1) + "</a>");
   cl.println("<br/><a id=" + id2 + ">" + String(mesg2) + "</a>");
 }

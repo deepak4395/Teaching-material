@@ -1,14 +1,18 @@
+/*
+   This code creates a local server and mqtt client. Ids and topics to publish are same.
+
+   Download following app for test functioning
+   For local control Arduino Controller : https://play.google.com/store/apps/details?id=com.CIStudio.ArduinoController
+   For remote control Mqtt Dash: https://play.google.com/store/apps/details?id=net.routix.mqttdash
+
+   Mqtt Library : PubSubClient by Nick O'Leary, Availale in Library Manger (Ctrl+shift+I)
+*/
 #include <WiFi.h>
 #include <PubSubClient.h>
 
 // Your wifi SSID and Password
 const char* ssid = "M 57"; //update
 const char* password = "8376918157"; //update
-
-// Gateway and IP must has same masking for first 3 places.
-IPAddress ip(192, 168, 0, 200);           //Set IP  //update
-IPAddress gateway(192, 168, 0, 1);        //Set Gateway // update
-IPAddress subnet(255, 255, 255, 0);       //Set Subnet
 
 // MQTT Broker Credentials flespi.io
 const char mqttServer[] = "mqtt.flespi.io";
@@ -48,13 +52,13 @@ void commandHandleMqtt(String t, String m) {
 }
 
 void wifiServer() {
-   // Check for any command from Arduino Controller app
+  // Check for any command from Arduino Controller app
   String s = appHandler();
   if (s != "") {
     // Manipulate the string according to your needs
     Serial.print("Message arrived from Ardino Controller app is ");
     Serial.println(s);
-    
+
     String pin, command;
     if (s.indexOf("IN") >= 0) {
       pin = s.substring(3, 4);
@@ -101,7 +105,6 @@ void loop()
     mqttPublish(id2, String(pirFlag)); //topic and message}
   }
 }
-
 void appData(WiFiClient cl) {
   //To write to Arduino Controller application
   cl.println("<br/><a id=" + id1 + ">" + String(rfidTag) + "</a>");
@@ -113,7 +116,6 @@ void appData(WiFiClient cl) {
 void wifiSetup() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
-  //WiFi.config(ip, gateway, subnet); //update
   Serial.print("Connecting");
   int tries = 0;
   while (WiFi.status() != WL_CONNECTED) {
