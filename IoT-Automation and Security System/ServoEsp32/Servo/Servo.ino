@@ -1,5 +1,6 @@
 /*
- * Esp32 Servo: https://github.com/madhephaestus/ESP32Servo or available in the servo folder.
+  Esp32 Servo: https://github.com/madhephaestus/ESP32Servo or available in the servo folder.
+  This code rotates servo motor 0 to 180 and then back to 0 contnuously. 
  */
 #include <ESP32Servo.h>
 
