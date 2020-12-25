@@ -5,7 +5,7 @@
 #define FIREBASE_UPDATE_AVAILABLE "/firmware/updateAvailable"
 #define FIREBASE_FIRMWARE_URL "/firmware/URL"
 long UPDATE_CHECK_TIME = 5000;
-String ver = "1.0.0.1";
+String ver = "3.0.0.0";
 
 #include <firebaseOTA.h>
 #include <WiFi.h>
@@ -34,6 +34,8 @@ void setup() {
 
 void loop() {
   checkUpdate();
+  Serial.println(" Advance iot batch is great");
+  delay(1000);
 }
 long lastUpdateCheck = millis();
 void checkUpdate() {
